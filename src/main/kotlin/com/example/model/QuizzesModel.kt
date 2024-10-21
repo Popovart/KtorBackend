@@ -3,6 +3,8 @@ package com.example.model
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import java.util.UUID
+
+// I need cascade deleting when quiz deletes
 @Serializable
 data class Quiz(
     @Contextual val quizId: UUID,
@@ -12,7 +14,7 @@ data class Quiz(
 )
 
 @Serializable
-data class QuizQuestion(
+data class Question(
     @Contextual val questionId: UUID,
     @Contextual val quizId: UUID,
     val question: String,
@@ -20,7 +22,7 @@ data class QuizQuestion(
 )
 
 @Serializable
-data class QuizAnswerVariant(
+data class AnswerVariant(
     @Contextual val answerId: UUID,
     @Contextual val questionId: UUID,
     val text: String,

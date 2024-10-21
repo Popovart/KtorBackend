@@ -30,18 +30,28 @@ object DatabaseFactory {
         transaction (database) {
             SchemaUtils.create(Quizzes)
         }
-        suspend fun <T> dbQuery(block: suspend () -> T): T =
-            newSuspendedTransaction(Dispatchers.IO) { block() }
+
+
     }
+
+    suspend fun <T> dbQuery(block: suspend () -> T): T =
+        newSuspendedTransaction(Dispatchers.IO) { block() }
 
 
 }
+
+
 
 fun main(args: Array<String>) {
     io.ktor.server.netty.EngineMain.main(args)
 }
 
 fun Application.module() {
+    val dao: QuizDao = QuizDaoImpl()
+    DatabaseFactory.init()
+
     configureSerialization()
-    configureRouting()
+    configureRouting(dao)
+
+
 }
