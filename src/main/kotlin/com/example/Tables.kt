@@ -1,5 +1,6 @@
 package com.example
 
+import org.jetbrains.exposed.sql.ReferenceOption
 import org.jetbrains.exposed.sql.Table
 
 object Quizzes : Table() {
@@ -13,7 +14,11 @@ object Quizzes : Table() {
 
 object Questions : Table() {
     val questionId = uuid("question_id").autoGenerate()
-    val quizId = reference("quiz_id", Quizzes.quizId)
+    val quizId = reference(
+        name = "quiz_id",
+        refColumn = Quizzes.quizId,
+        onDelete = ReferenceOption.CASCADE
+    )
     val question = varchar("question", 1024)
     val explanation = varchar("explanation", 1024).nullable()
 
@@ -22,7 +27,11 @@ object Questions : Table() {
 
 object AnswerVariants : Table() {
     val answerId = uuid("answer_id").autoGenerate()
-    val questionId = reference("question_id", Questions.questionId)
+    val questionId = reference(
+        name = "question_id",
+        refColumn = Questions.questionId,
+        onDelete = ReferenceOption.CASCADE
+    )
     val text = varchar("text", 1024)
     val isCorrect = bool("is_correct").default(false)
 
