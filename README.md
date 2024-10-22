@@ -7,8 +7,8 @@ This project is a **Quiz and Question Management System** built using **Ktor** a
 ![Quiz creation with POSTMAN](./readmeSources/postmanExample2.png)
 ![postgres result](./readmeSources/postmanExample1.png)
 
-<img src="./readmeSources/postmanExample2.png" alt="Quiz creation with POSTMAN" width="100"/>
-<img src="./readmeSources/postmanExample1.png" alt="postgres result" width="100"/>
+<img src="./readmeSources/postmanExample2.png" alt="Quiz creation with POSTMAN" width="300"/>
+<img src="./readmeSources/postmanExample1.png" alt="postgres result" width="300"/>
 
 
 
