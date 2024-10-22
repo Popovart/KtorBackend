@@ -47,7 +47,7 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
-    val dao: QuizDao = QuizDaoImpl()
+    val dao = QuizDaoImpl()
     DatabaseFactory.init()
 
     configureSerialization()

@@ -1,12 +1,12 @@
-package com.example.model
+package com.example.model.quizModel
 
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import java.util.UUID
 
-// I need cascade deleting when quiz deletes
+
 @Serializable
-data class Quiz(
+data class QuizDTO(
     @Contextual val quizId: UUID,
     val title: String,
     val shortDescription: String? = null,
@@ -14,7 +14,7 @@ data class Quiz(
 )
 
 @Serializable
-data class Question(
+data class QuestionDTO(
     @Contextual val questionId: UUID,
     @Contextual val quizId: UUID,
     val question: String,
@@ -22,7 +22,7 @@ data class Question(
 )
 
 @Serializable
-data class AnswerVariant(
+data class AnswerVariantDTO(
     @Contextual val answerId: UUID,
     @Contextual val questionId: UUID,
     val text: String,
