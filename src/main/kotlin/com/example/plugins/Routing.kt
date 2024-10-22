@@ -31,19 +31,20 @@ fun Application.configureRouting(
         get("/quizzes/{quizId}") {
             val quizId = UUID.fromString(call.parameters["quizId"])
             val quiz = dao.getQuiz(quizId)
-            if (quiz == null) {
+            if (quiz == null)
                 call.respond("Quiz has not been found :(")
-            } else
-            {
-                call.respond("Quiz has been retrieved :)")
-            }
+            else
+                call.respond(quiz.toString())
         }
 
         // create quiz
         post("/quizzes") {
             val quizRequest  = call.receive<QuizRequest>()
-            dao.createQuiz(quizRequest)
-            call.respond("Quiz has been added successfully")
+            val quiz = dao.createQuiz(quizRequest)
+            if (quiz == null)
+                call.respond("Quiz hasn't been added :(")
+            else
+                call.respond(quiz.toString())
         }
 
         /* update quiz
@@ -52,95 +53,122 @@ fun Application.configureRouting(
         */
         put("/quizzes") {
             val quizDTO = call.receive<QuizDTO>()
-            dao.updateQuiz(quizDTO)
-            call.respond("Quiz has been updated successfully")
+            val isQuizUpdated = dao.updateQuiz(quizDTO)
+            if (isQuizUpdated)
+                call.respond("Quiz hasn't been updated :(")
+            else
+                call.respond("Quiz has been updated successfully :)")
         }
 
         // delete quiz
         delete("/quizzes/{quizId}") {
             val quizId = UUID.fromString(call.parameters["quizId"])
-            dao.deleteQuiz(quizId)
-            call.respond("Quiz has been deleted successfully")
+            val isQuizDeleted = dao.deleteQuiz(quizId)
+            if (isQuizDeleted)
+                call.respond("Quiz hasn't been deleted :(")
+            else
+                call.respond("Quiz has been deleted successfully :)")
         }
 
         // get all quiz questions
         get("/quizzes/{quizId}/questions") {
             val quizId = UUID.fromString(call.parameters["quizId"])
-            dao.getAllQuizQuestions(quizId)
-            call.respond("Quiz questions has been retrieved successfully :)")
+            val quizQuestions = dao.getAllQuizQuestions(quizId)
+            if (quizQuestions.isEmpty()){
+                call.respond("There are no questions in this quiz!")
+            } else {
+                call.respond(quizQuestions.toString())
+            }
         }
 
         // get question with specific questionId
         get("/questions/{questionId}") {
             val questionId = UUID.fromString(call.parameters["questionId"])
             val question = dao.getQuestion(questionId)
-            if (question == null) {
+            if (question == null)
                 call.respond("Question has not been found :(")
-            } else
-            {
-                call.respond("Question has been retrieved :)")
-            }
+            else
+                call.respond(question.toString())
         }
 
         // create question
         post("/questions") {
             val questionRequest = call.receive<QuestionRequest>()
-            dao.createQuestion(questionRequest)
-            call.respond("Question has been added successfully :)")
+            val question = dao.createQuestion(questionRequest)
+            if (question == null)
+                call.respond("Question hasn't been added :(")
+            else
+                call.respond(question.toString())
         }
 
         // update question
         put("/questions") {
             val questionDTO = call.receive<QuestionDTO>()
-            dao.updateQuestion(questionDTO)
-            call.respond("Question has been updated successfully :)")
+            val isQuestionUpdated = dao.updateQuestion(questionDTO)
+            if (isQuestionUpdated)
+                call.respond("Question hasn't been updated :(")
+            else
+                call.respond("Question has been updated successfully :)")
         }
 
         // delete question
         delete("/questions/{questionId}") {
             val questionId = UUID.fromString(call.parameters["questionId"])
-            dao.deleteQuestion(questionId)
-            call.respond("Question has been deleted successfully :)")
+            val isQuestionDeleted = dao.deleteQuestion(questionId)
+            if (isQuestionDeleted)
+                call.respond("Question hasn't been deleted :(")
+            else
+                call.respond("Question has been deleted successfully :)")
         }
 
         // get question answer variants
         get("/questions/{questionId}/answerVariants") {
             val questionId = UUID.fromString(call.parameters["questionId"])
-            dao.getAllQuestionAnswerVariants(questionId)
-            call.respond("Answer variants has been retrieved successfully :)")
+            val answerVariants = dao.getAllQuestionAnswerVariants(questionId)
+            if (answerVariants.isEmpty())
+                call.respond("There are no answer variants for this question :(")
+            else
+                call.respond(answerVariants.toString())
         }
 
         // get answer variant
         get("/answerVariants/{answerId}") {
             val answerId = UUID.fromString(call.parameters["answerId"])
             val answerVariant = dao.getAnswerVariant(answerId)
-            if (answerVariant == null) {
-                call.respond("Answer Variant has not been found :(")
-            } else
-            {
-                call.respond("Question has been retrieved :)")
-            }
+            if (answerVariant == null)
+                call.respond("Answer variant has not been found :(")
+            else
+                call.respond(answerVariant.toString())
         }
 
         // create answerVariant
         post("/answerVariant") {
             val answerVariantRequest = call.receive<AnswerVariantRequest>()
-            dao.createAnswerVariant(answerVariantRequest)
-            call.respond("Answer Variant has been added successfully :)")
+            val answerVariant = dao.createAnswerVariant(answerVariantRequest)
+            if (answerVariant == null)
+                call.respond("Answer variant hasn't been added :(")
+            else
+                call.respond(answerVariant.toString())
         }
 
         // update question
         put("/answerVariant") {
             val answerVariantDTO = call.receive<AnswerVariantDTO>()
-            dao.updateAnswerVariant(answerVariantDTO)
-            call.respond("Answer Variant has been updated successfully :)")
+            val isAnswerVariantUpdated = dao.updateAnswerVariant(answerVariantDTO)
+            if (isAnswerVariantUpdated)
+                call.respond("Answer variant hasn't been updated :(")
+            else
+                call.respond("Answer variant has been updated successfully :)")
         }
 
         // delete question
         delete("/answerVariant/{answerId}") {
             val answerId = UUID.fromString(call.parameters["answerId"])
-            dao.deleteQuestion(answerId)
-            call.respond("Answer Variant has been deleted successfully :)")
+            val isAnswerVariantDeleted = dao.deleteQuestion(answerId)
+            if (isAnswerVariantDeleted)
+                call.respond("Answer variant hasn't been deleted :(")
+            else
+                call.respond("Answer variant has been deleted successfully :)")
         }
 
 
