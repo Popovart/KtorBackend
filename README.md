@@ -22,10 +22,14 @@ This project is a **Quiz and Question Management System** built using **Ktor** a
 
 ## Technology Stack
 
-- **Backend Framework**: ![Ktor](https://img.shields.io/badge/ktor-%232B6CB0.svg?style=for-the-badge&logo=ktor&logoColor=white) (Kotlin-based backend framework)
-- **Database ORM**: [![Exposed ORM](https://img.shields.io/badge/Exposed-ORM-42A5F5?style=for-the-badge&logo=kotlin&logoColor=white)](https://github.com/JetBrains/Exposed) (Kotlin ORM library for relational database management)
-- **Database**: ![PostgreSQL](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
-- **Language**: ![Kotlin](https://img.shields.io/badge/kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white)
+- **Backend Framework**:
+![Ktor](https://img.shields.io/badge/ktor-%232B6CB0.svg?style=for-the-badge&logo=ktor&logoColor=white) (Kotlin-based backend framework)
+- **Database ORM**:
+[![Exposed ORM](https://img.shields.io/badge/Exposed-ORM-42A5F5?style=for-the-badge&logo=kotlin&logoColor=white)](https://github.com/JetBrains/Exposed) (Kotlin ORM library for relational database management)
+- **Database**:
+![PostgreSQL](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+- **Language**:
+![Kotlin](https://img.shields.io/badge/kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white)
 
 ## RESTful Endpoints
 
