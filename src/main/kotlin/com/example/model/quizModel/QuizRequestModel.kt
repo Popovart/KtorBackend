@@ -8,7 +8,7 @@ import java.util.*
 
 Quiz Request Model.
 
-This model introduces data witch can be retrieved from client side
+This model introduces data witch can be retrieved from the client side
 
 */
 @Serializable
