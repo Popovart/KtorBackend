@@ -4,7 +4,8 @@ This project is a **Quiz and Question Management System** built using **Ktor** a
 
 ## Demo
 
-![Quiz creation with POSTMAN](./readmeSources/postmanExample.png)
+![Quiz creation with POSTMAN](./readmeSources/postmanExample2.png)
+![postgres result](./readmeSources/postmanExample1.png)
 
 
 ## Features
