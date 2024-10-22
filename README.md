@@ -2,6 +2,11 @@
 
 This project is a **Quiz and Question Management System** built using **Ktor** as the backend framework and **Exposed ORM** for database interactions. The system provides **RESTful API** endpoints to manage quizzes, questions, and their respective answer variants. The client side of the application can **create**, **update**, **delete**, and **retrieve** quizzes, questions, and answer variants.
 
+## Demo
+
+![Quiz creation with POSTMAN](./readmeSources/postmanExample.png)
+
+
 ## Features
 
 - **Quiz Management**: The client can perform CRUD operations on quizzes. Quizzes consist of a title, a short description, and an optional preview image. Each quiz is uniquely identified by a UUID (`quizId`).
