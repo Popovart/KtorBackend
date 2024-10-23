@@ -10,8 +10,6 @@ import io.ktor.server.routing.*
 import io.ktor.server.util.*
 import java.util.*
 
-private fun check
-
 fun Application.configureRouting(
     dao : QuizDaoImpl,
 ) {
