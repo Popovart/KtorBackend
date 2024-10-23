@@ -54,4 +54,4 @@ This project is a **Quiz and Question Management System** built using **Ktor** a
 
 ## Summary
 
-This project is designed to **manage quiz content** efficiently through a clean **API structure** with distinct entities and operations for **quizzes**, **questions**, and **answer variants**. The system is flexible enough to support various **CRUD operations**, making it suitable for applications that require customizable quizzes and question management functionality.
+This project is designed to **manage quiz content** efficiently through a clean **API structure** with distinct entities and operations for **quizzes**, **questions**, and **answer variants**. The system is flexible enough to support various **CRUD operations**.
