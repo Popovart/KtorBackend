@@ -5,8 +5,8 @@ This project is a **Quiz and Question Management System** built using **Ktor** a
 ## Demo
 
 <div>
-  <img src="./readmeSources/postmanExample2.png" alt="Quiz creation with POSTMAN" width="500"/>
-  <img src="./readmeSources/postmanExample1.png" alt="postgres result" width="500"/>
+  <img src="./readmeSources/postmanExample2.png" alt="Quiz creation with POSTMAN" width="50%"/>
+  <img src="./readmeSources/postmanExample1.png" alt="postgres result" width="50%"/>
 </div>
 
 
@@ -22,10 +22,12 @@ This project is a **Quiz and Question Management System** built using **Ktor** a
 
 ## Technology Stack
 
-- **Backend Framework**: Ktor (Kotlin-based backend framework)
-- **Database ORM**: Exposed ORM (Kotlin ORM library for relational database management)
-- **Database**: Relational database with tables for quizzes, questions, and answer variants, using UUID as primary keys.
-- **Language**: Kotlin
+- **Backend Framework**: ![Ktor](https://img.shields.io/badge/ktor-%232B6CB0.svg?style=for-the-badge&logo=ktor&logoColor=white)
+- **Database ORM**: [![Exposed ORM](https://img.shields.io/badge/Exposed-ORM-42A5F5?style=for-the-badge&logo=kotlin&logoColor=white)](https://github.com/JetBrains/Exposed)
+- **Database**: 
+![PostgreSQL](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+- **Language**: 
+![Kotlin](https://img.shields.io/badge/kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white)
 
 ## RESTful Endpoints
 
@@ -52,4 +54,4 @@ This project is a **Quiz and Question Management System** built using **Ktor** a
 
 ## Summary
 
-This project is designed to **manage quiz content** efficiently through a clean **API structure** with distinct entities and operations for **quizzes**, **questions**, and **answer variants**. The system is flexible enough to support various **CRUD operations**, making it suitable for applications that require customizable quizzes and question management functionality.
+This project is designed to **manage quiz content** efficiently through a clean **API structure** with distinct entities and operations for **quizzes**, **questions**, and **answer variants**. The system is flexible enough to support various **CRUD operations**.
