@@ -2,12 +2,15 @@ package com.example.plugins
 
 import com.example.QuizDaoImpl
 import com.example.model.quizModel.*
+import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.util.*
 import java.util.*
+
+private fun check
 
 fun Application.configureRouting(
     dao : QuizDaoImpl,
@@ -29,8 +32,12 @@ fun Application.configureRouting(
 
         // get a specific quiz by ID
         get("/quizzes/{quizId}") {
-            val quizId = UUID.fromString(call.parameters["quizId"])
-            val quiz = dao.getQuiz(quizId)
+            val quizIdParam = call.parameters["quizId"]
+            if (quizIdParam == null) {
+                call.respond(HttpStatusCode.BadRequest, "Missing or invalid quizId")
+                return@get
+            }
+            val quiz = dao.getQuiz(UUID.fromString(quizIdParam))
             if (quiz == null)
                 call.respond("Quiz has not been found :(")
             else
@@ -62,8 +69,12 @@ fun Application.configureRouting(
 
         // delete quiz
         delete("/quizzes/{quizId}") {
-            val quizId = UUID.fromString(call.parameters["quizId"])
-            val isQuizDeleted = dao.deleteQuiz(quizId)
+            val quizIdParam = call.parameters["quizId"]
+            if (quizIdParam == null) {
+                call.respond(HttpStatusCode.BadRequest, "Missing or invalid quizId")
+                return@delete
+            }
+            val isQuizDeleted = dao.deleteQuiz(UUID.fromString(quizIdParam))
             if (isQuizDeleted)
                 call.respond("Quiz hasn't been deleted :(")
             else
@@ -72,8 +83,12 @@ fun Application.configureRouting(
 
         // get all quiz questions
         get("/quizzes/{quizId}/questions") {
-            val quizId = UUID.fromString(call.parameters["quizId"])
-            val quizQuestions = dao.getAllQuizQuestions(quizId)
+            val quizIdParam = call.parameters["quizId"]
+            if (quizIdParam == null) {
+                call.respond(HttpStatusCode.BadRequest, "Missing or invalid quizId")
+                return@get
+            }
+            val quizQuestions = dao.getAllQuizQuestions(UUID.fromString(quizIdParam))
             if (quizQuestions.isEmpty()){
                 call.respond("There are no questions in this quiz!")
             } else {
@@ -83,8 +98,12 @@ fun Application.configureRouting(
 
         // get question with specific questionId
         get("/questions/{questionId}") {
-            val questionId = UUID.fromString(call.parameters["questionId"])
-            val question = dao.getQuestion(questionId)
+            val questionIdParam = call.parameters["questionId"]
+            if (questionIdParam == null) {
+                call.respond(HttpStatusCode.BadRequest, "Missing or invalid questionId")
+                return@get
+            }
+            val question = dao.getQuestion(UUID.fromString(questionIdParam))
             if (question == null)
                 call.respond("Question has not been found :(")
             else
@@ -113,8 +132,12 @@ fun Application.configureRouting(
 
         // delete question
         delete("/questions/{questionId}") {
-            val questionId = UUID.fromString(call.parameters["questionId"])
-            val isQuestionDeleted = dao.deleteQuestion(questionId)
+            val questionIdParam = call.parameters["questionId"]
+            if (questionIdParam == null) {
+                call.respond(HttpStatusCode.BadRequest, "Missing or invalid questionId")
+                return@delete
+            }
+            val isQuestionDeleted = dao.deleteQuestion(UUID.fromString(questionIdParam))
             if (isQuestionDeleted)
                 call.respond("Question hasn't been deleted :(")
             else
@@ -123,8 +146,12 @@ fun Application.configureRouting(
 
         // get question answer variants
         get("/questions/{questionId}/answerVariants") {
-            val questionId = UUID.fromString(call.parameters["questionId"])
-            val answerVariants = dao.getAllQuestionAnswerVariants(questionId)
+            val questionIdParam = call.parameters["questionId"]
+            if (questionIdParam == null) {
+                call.respond(HttpStatusCode.BadRequest, "Missing or invalid questionId")
+                return@get
+            }
+            val answerVariants = dao.getAllQuestionAnswerVariants(UUID.fromString(questionIdParam))
             if (answerVariants.isEmpty())
                 call.respond("There are no answer variants for this question :(")
             else
@@ -133,8 +160,11 @@ fun Application.configureRouting(
 
         // get answer variant
         get("/answerVariants/{answerId}") {
-            val answerId = UUID.fromString(call.parameters["answerId"])
-            val answerVariant = dao.getAnswerVariant(answerId)
+            val answerIdParam = call.parameters["answerId"]
+            if (answerIdParam == null) {
+                call.respond(HttpStatusCode.BadRequest, "Missing or invalid answerId")
+            }
+            val answerVariant = dao.getAnswerVariant(UUID.fromString(answerIdParam))
             if (answerVariant == null)
                 call.respond("Answer variant has not been found :(")
             else
@@ -163,8 +193,11 @@ fun Application.configureRouting(
 
         // delete question
         delete("/answerVariant/{answerId}") {
-            val answerId = UUID.fromString(call.parameters["answerId"])
-            val isAnswerVariantDeleted = dao.deleteQuestion(answerId)
+            val answerIdParam = call.parameters["answerId"]
+            if (answerIdParam == null) {
+                call.respond(HttpStatusCode.BadRequest, "Missing or invalid answerId")
+            }
+            val isAnswerVariantDeleted = dao.deleteQuestion(UUID.fromString(answerIdParam))
             if (isAnswerVariantDeleted)
                 call.respond("Answer variant hasn't been deleted :(")
             else
