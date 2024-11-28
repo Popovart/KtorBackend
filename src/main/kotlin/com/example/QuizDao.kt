@@ -106,7 +106,7 @@ class QuizDaoImpl : QuizDao, QuestionDao, AnswerVariantDao {
     }
 
     override suspend fun getAllQuestionAnswerVariants(questionId: UUID): List<AnswerVariantDTO> = dbQuery {
-        Questions.select { Questions.questionId eq questionId }.map(::resultRowToAnswerVariant)
+        AnswerVariants.select { AnswerVariants.questionId eq questionId }.map(::resultRowToAnswerVariant)
     }
 
     override suspend fun getAnswerVariant(answerId: UUID): AnswerVariantDTO? = dbQuery {
