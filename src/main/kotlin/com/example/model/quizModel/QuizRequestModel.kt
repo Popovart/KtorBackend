@@ -1,5 +1,6 @@
 package com.example.model.quizModel
 
+import com.example.UUIDSerializer
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import java.util.*
@@ -20,14 +21,14 @@ data class QuizRequest(
 
 @Serializable
 data class QuestionRequest(
-    @Contextual val quizId: UUID,
+    @Serializable(with = UUIDSerializer::class) val quizId: UUID,
     val question: String,
     val explanation: String? = null,
 )
 
 @Serializable
 data class AnswerVariantRequest(
-    @Contextual val questionId: UUID,
+    @Serializable(with = UUIDSerializer::class) val questionId: UUID,
     val text: String,
     val isCorrect: Boolean = false,
 )

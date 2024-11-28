@@ -21,24 +21,36 @@ import java.util.*
 
 object DatabaseFactory {
     fun init() {
-        val database =  Database.connect(
-            url = "jdbc:postgresql://localhost:5432/QuizzesApp",
-            driver = "org.postgresql.Driver",
-            user = "postgres",
-            password = "3312"
-        )
-        transaction (database) {
-            SchemaUtils.create(Quizzes)
+        val databaseUrl = System.getenv("DATABASE_URL") ?: "jdbc:postgresql://localhost:5432/QuizzesApp"
+        val user = System.getenv("DATABASE_USER") ?: "postgres"
+        val password = System.getenv("DATABASE_PASSWORD") ?: "3312"
+
+        var connected = false
+        while (!connected) {
+            try {
+                val database = Database.connect(
+                    url = databaseUrl,
+                    driver = "org.postgresql.Driver",
+                    user = user,
+                    password = password
+                )
+                println("Successfully connected to the database!")
+                connected = true
+                transaction(database) {
+                    SchemaUtils.create(Quizzes)
+                }
+            } catch (e: Exception) {
+                println("Database connection failed: ${e.message}")
+                println("Retrying in 2 seconds...")
+                Thread.sleep(2000)
+            }
         }
-
-
     }
 
     suspend fun <T> dbQuery(block: suspend () -> T): T =
         newSuspendedTransaction(Dispatchers.IO) { block() }
-
-
 }
+
 
 
 
