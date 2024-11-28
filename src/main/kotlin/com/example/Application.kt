@@ -37,7 +37,7 @@ object DatabaseFactory {
                 println("Successfully connected to the database!")
                 connected = true
                 transaction(database) {
-                    SchemaUtils.create(Quizzes)
+                    SchemaUtils.create(Quizzes, Questions, AnswerVariants)
                 }
             } catch (e: Exception) {
                 println("Database connection failed: ${e.message}")
