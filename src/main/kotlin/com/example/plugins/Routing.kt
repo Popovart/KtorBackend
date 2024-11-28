@@ -10,6 +10,7 @@ import io.ktor.server.routing.*
 import io.ktor.server.util.*
 import java.util.*
 
+// TODO check if it is possible to post two identical projects
 fun Application.configureRouting(
     dao : QuizDaoImpl,
 ) {
@@ -159,9 +160,9 @@ fun Application.configureRouting(
                 val questionDTO = call.receive<QuestionDTO>()
                 val isQuestionUpdated = dao.updateQuestion(questionDTO)
                 if (isQuestionUpdated)
-                    call.respond("Question hasn't been updated :(")
-                else
                     call.respond("Question has been updated successfully :)")
+                else
+                    call.respond("Question hasn't been updated :(")
             } catch (e: Exception) {
                 call.respond(HttpStatusCode.InternalServerError, "An error occurred: ${e.message}")
             }
@@ -178,9 +179,9 @@ fun Application.configureRouting(
                 }
                 val isQuestionDeleted = dao.deleteQuestion(UUID.fromString(questionIdParam))
                 if (isQuestionDeleted)
-                    call.respond("Question hasn't been deleted :(")
-                else
                     call.respond("Question has been deleted successfully :)")
+                else
+                    call.respond("Question hasn't been deleted :(")
             } catch (e: Exception) {
                 call.respond(HttpStatusCode.InternalServerError, "An error occurred: ${e.message}")
             }
@@ -262,9 +263,9 @@ fun Application.configureRouting(
                 }
                 val isAnswerVariantDeleted = dao.deleteQuestion(UUID.fromString(answerIdParam))
                 if (isAnswerVariantDeleted)
-                    call.respond("Answer variant hasn't been deleted :(")
-                else
                     call.respond("Answer variant has been deleted successfully :)")
+                else
+                    call.respond("Answer variant hasn't been deleted :(")
             } catch (e: Exception) {
                 call.respond(HttpStatusCode.InternalServerError, "An error occurred: ${e.message}")
             }
