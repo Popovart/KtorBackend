@@ -10,7 +10,6 @@ import io.ktor.server.routing.*
 import io.ktor.server.util.*
 import java.util.*
 
-// TODO check if it is possible to post two identical projects
 fun Application.configureRouting(
     dao : QuizDaoImpl,
 ) {
@@ -239,7 +238,7 @@ fun Application.configureRouting(
 
         }
 
-        // update question
+        // update answer variant
         put("/answerVariant") {
             try {
                 val answerVariantDTO = call.receive<AnswerVariantDTO>()
