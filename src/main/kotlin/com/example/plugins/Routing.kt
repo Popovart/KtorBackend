@@ -244,9 +244,9 @@ fun Application.configureRouting(
                 val answerVariantDTO = call.receive<AnswerVariantDTO>()
                 val isAnswerVariantUpdated = dao.updateAnswerVariant(answerVariantDTO)
                 if (isAnswerVariantUpdated)
-                    call.respond("Answer variant hasn't been updated :(")
-                else
                     call.respond("Answer variant has been updated successfully :)")
+                else
+                    call.respond("Answer variant hasn't been updated :(")
             } catch (e: Exception) {
                 call.respond(HttpStatusCode.InternalServerError, "An error occurred: ${e.message}")
             }
